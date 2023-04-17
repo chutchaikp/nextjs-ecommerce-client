@@ -1,0 +1,11 @@
+.categories {
+  display: flex;
+  flex-direction: column;
+
+  .products {
+    flex: 1;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+}

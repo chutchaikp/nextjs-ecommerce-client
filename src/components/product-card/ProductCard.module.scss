@@ -1,0 +1,41 @@
+.productCard {
+  width: 200px;
+  margin-top: 1rem;
+  // background-color: silver;
+
+  a {
+    .card {
+      transition: all 0.3s ease;
+      &:hover {
+        transform: scale(1.1);
+      }
+
+      img {
+        width: 100%;
+        object-fit: cover;
+        // background-color: silver;
+        cursor: pointer;
+      }
+      .title {
+      }
+      .price {
+        display: flex;
+        justify-content: space-between;
+
+        .priceOn {
+          flex: 1;
+        }
+        .priceOff {
+          flex: 1;
+          color: silver;
+          text-decoration: line-through;
+        }
+        .priceDiscountPercent {
+          flex: 2;
+          color: green;
+          text-align: right;
+        }
+      }
+    }
+  }
+}

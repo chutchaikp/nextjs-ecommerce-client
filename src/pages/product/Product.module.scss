@@ -1,0 +1,114 @@
+.product {
+  display: flex;
+  gap: 2rem;
+
+  .left {
+    flex: 1;
+  }
+  .right {
+    flex: 1;
+    // padding-left: 2rem;
+
+    .details {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      .title {
+        font-size: 1.25rem;
+        font-weight: 700;
+      }
+      .price {
+        font-weight: 600;
+      }
+      .includeTax {
+        color: rgba(0, 0, 0, 0.3);
+      }
+      .sizeRegion {
+        margin-top: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        .sizeTitle {
+          flex: 1;
+          display: flex;
+          justify-content: space-between;
+        }
+
+        .sizes {
+          margin-top: 10px;
+          display: flex;
+          flex-wrap: wrap;
+          gap: 10px;
+          .size,
+          button {
+            width: 100px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+            border: 1px solid rgba(128, 128, 128, 0.4);
+            cursor: pointer;
+
+            &:hover {
+              border: 1px solid black;
+            }
+          }
+        }
+
+        .selectionRequired {
+          color: rgb(145, 4, 4);
+        }
+      }
+
+      .buttons {
+        margin-top: 10px;
+        .addToCart,
+        .whistlist {
+          button {
+            margin: 3px;
+            padding: 10px;
+            font-size: 1rem;
+            background-color: black;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            min-width: 300px;
+
+            &:hover {
+              opacity: 0.8;
+              cursor: pointer;
+            }
+          }
+        }
+        .whistlist {
+          button {
+            color: black;
+            background-color: inherit;
+            border: 1px solid red;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            &:hover {
+              background-color: rgba(192, 192, 192, 0.4);
+              cursor: pointer;
+            }
+          }
+        }
+      }
+
+      .desc {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        h3 {
+          margin-top: 10px;
+        }
+      }
+    }
+  }
+}
