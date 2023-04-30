@@ -1,0 +1,25 @@
+.relatedProducts {
+  h1 {
+    color: blue;
+  }
+}
+
+.myCarrousel {
+  // background-color: red;
+  // transform: scale(0.99) !important;
+
+  div {
+    width: 100%;
+    background-color: yellow;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    span {
+      background-color: blue;
+    }
+    img {
+      width: 70% !important;
+      object-fit: cover;
+    }
+  }
+}

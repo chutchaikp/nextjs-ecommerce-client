@@ -1,16 +1,28 @@
 import Link from 'next/link';
 import styles from './ProductCard.module.scss';
-const ProductCard = () => {
+import {
+  BaseApiUrl,
+  toCurrencyFormated,
+  toDiscountPercentage,
+} from '@/utils/utils.client';
+
+const ProductCard = ({ product }) => {
+  const p = product.attributes;
+  const trumbmail = BaseApiUrl() + p.trumbnail.data.attributes.url;
   return (
     <div className={styles.productCard}>
-      <Link href="/product/1">
+      <Link href={`/product/${p.slug}`}>
         <div className={styles.card}>
-          <img src="/images/product-1.webp" alt="" />
-          <div className={styles.title}>Product name</div>
+          <img src={trumbmail} alt="" />
+          <div className={styles.title}>{p.name}</div>
           <div className={styles.price}>
-            <div className={styles.priceOn}>20.00</div>
-            <div className={styles.priceOff}>25.00</div>
-            <div className={styles.priceDiscountPercent}>20% off</div>
+            <div className={styles.priceOn}>{toCurrencyFormated(p.price)}</div>
+            <div className={styles.priceOff}>
+              {toCurrencyFormated(p.original_price)}
+            </div>
+            <div className={styles.priceDiscountPercent}>
+              {toDiscountPercentage(p.price, p.original_price)}% off
+            </div>
           </div>
         </div>
       </Link>

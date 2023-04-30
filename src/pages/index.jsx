@@ -1,7 +1,10 @@
 import HeroBanner from '@/components/hero-banner/HeroBanner';
 import ProductCard from '../components/product-card/ProductCard.jsx';
 import styles from './Index.module.scss';
-const Index = () => {
+import axios from 'axios';
+import { fetchDataFromApi } from '@/utils/utils.js';
+const Home = ({ data }) => {
+  console.log(data.length);
   return (
     <div className={styles.index}>
       <div className={styles.hero}>
@@ -18,18 +21,20 @@ const Index = () => {
       </div>
 
       <div className={styles.products}>
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
+        {data.map((product, idx) => (
+          <ProductCard key={idx} product={product} />
+        ))}
       </div>
     </div>
   );
 };
-export default Index;
+export default Home;
+
+export async function getStaticProps() {
+  const result = await fetchDataFromApi('/api/products?populate=*');
+  return {
+    props: {
+      data: result.data,
+    },
+  };
+}

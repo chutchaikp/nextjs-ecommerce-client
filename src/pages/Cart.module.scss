@@ -1,0 +1,99 @@
+.cart {
+  display: flex;
+  // flex-direction: column;
+  justify-content: center;
+
+  .wrapper {
+    width: 80%;
+    display: flex;
+
+    .summary {
+      // background-color: rgba(135, 207, 235, 0.2);
+      // flex: 1;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      h1 {
+        margin: 0;
+        padding: 0;
+        margin-bottom: 1rem;
+        color: #ccc;
+      }
+      .amount {
+        font-size: 1.5rem;
+        font-weight: 700;
+        // margin-top: 2rem;
+        margin-bottom: 1rem;
+      }
+      .items {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding-right: 2rem;
+
+        .item {
+          display: flex;
+          padding-bottom: 10px;
+          border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+
+          .image {
+            flex: 1;
+            padding: 0px;
+            img {
+              width: 70%;
+              // height: 50px;
+              object-fit: cover;
+            }
+          }
+          .nameQuantity {
+            // padding: 10px;
+            flex: 3;
+            display: flex;
+            flex-direction: column;
+
+            .name {
+              // font-size: 1.5rem;
+              font-weight: 600;
+            }
+            span {
+              font-weight: 200;
+            }
+          }
+          .total {
+            flex: 2;
+            font-weight: 700;
+            color: blue;
+            text-align: right;
+            // padding-right: 1.25rem;
+          }
+        }
+      }
+      .totalDue {
+        display: flex;
+        justify-content: space-between;
+        // border-top: 1px solid rgba(128, 128, 128, 0.3);
+        padding-top: 1.5rem;
+
+        .text {
+          flex: 4;
+          font-size: 1.25rem;
+          font-weight: 900;
+        }
+        .value {
+          flex: 2;
+          font-size: 1.3rem;
+          font-weight: 700;
+          color: blue;
+          text-align: right;
+        }
+      }
+    }
+    .checkoutForm {
+      padding: 2rem;
+      // flex: 1;
+      width: 400px;
+    }
+  }
+}

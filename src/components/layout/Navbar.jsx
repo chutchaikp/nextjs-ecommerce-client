@@ -1,17 +1,8 @@
-// import styles from './Navbar.module.scss';
-// const Navbar = () => {
-// 	return (
-// 		<div className={styles.navbar}>
-// 			<h1> Navbar </h1>
-// 		</div>
-// 	)
-// }
-// export default Navbar;
-
 /* eslint-disable @next/next/no-img-element */
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import {
+  MdArrowDropDown,
   MdFavorite,
   MdFavoriteBorder,
   MdOutlineFavorite,
@@ -31,9 +22,14 @@ import {
   removeItem,
 } from '@/redux/cartSlice';
 import { useRouter } from 'next/router';
+import { fetchDataFromApi } from '@/utils/utils';
+import { toCurrencyFormated } from '@/utils/utils.client';
 const Navbar = () => {
   const router = useRouter(); // router.pathname
   const dispatch = useDispatch();
+
+  const [categories, setCategories] = useState([]);
+  const [showCategories, setShowCategories] = useState(false);
 
   const [scrolled, setScrolled] = useState(false);
   const [showCartPopup, setShowCartPopup] = useState(false);
@@ -65,18 +61,54 @@ const Navbar = () => {
     window.addEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    async function loadCategories() {
+      try {
+        const res = await fetchDataFromApi('/api/categories?populate=*');
+        setCategories(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    loadCategories();
+  }, []);
+
   return (
     <div className={` ${styles.navbar} ${scrolled ? styles.sticky : ''} `}>
       <div className={styles.navbarContent}>
         <div className={styles.left}>
-          {/* <Link href={'/'}>Shoe Store</Link> */}
           <Link href="/">
             <img src="/images/logo.svg" alt="" />
           </Link>
         </div>
         <div className={styles.center}>
           <Link href="/">Home</Link>
-          <Link href="/">Categories</Link>
+          <Link href="/">
+            <div
+              className={styles.categories}
+              onMouseEnter={() => setShowCategories(true)}
+              onMouseLeave={() => setShowCategories(false)}
+            >
+              <span>Categories</span>
+              <MdArrowDropDown />
+              {showCategories && (
+                <div className={styles.categoriesMenu}>
+                  <ul>
+                    {categories.map((cat, idx) => {
+                      return (
+                        <li key={idx.toString()}>
+                          <Link href={`/categories/${cat.attributes.slug}`}>
+                            <span>{cat.attributes.name}</span>
+                            <span>{cat.attributes.products?.data?.length}</span>
+                          </Link>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              )}
+            </div>
+          </Link>
           <Link href="/">Contact</Link>
           <Link href="/about">About</Link>
         </div>
@@ -104,22 +136,22 @@ const Navbar = () => {
           ></div>
           <div className={styles.cartItems} onclick={() => alert('hi')}>
             <div className={styles.back}>
-              <FaChevronLeft />
+              <FaChevronLeft onClick={() => setShowCartPopup(false)} />
               <span>
                 Your cart <b>({items.length} items)</b>
               </span>
             </div>
 
             {items.map((item, idx) => {
-              // debugger;
-              const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
+              const backendUrl = process.env.NEXT_PUBLIC_API_URL;
               const img =
                 backendUrl +
                 item.product.images.data[0].attributes.formats.small.url;
-              const price = item.product.price.toLocaleString('th-TH', {
-                style: 'currency',
-                currency: 'THB',
-              });
+              const price = toCurrencyFormated(item.product.price);
+              // item.product.price.toLocaleString('th-TH', {
+              //   style: 'currency',
+              //   currency: 'THB',
+              // });
 
               return (
                 <div key={idx.toString()} className={styles.cartItem}>
@@ -168,9 +200,8 @@ const Navbar = () => {
             </div>
 
             <div className={styles.btn}>
-              <Link href="/payment">
-                <button>PAY WITH STRIPE</button>
-              </Link>
+              {/* <Link href="/payment">PAY WITH STRIPE</Link> */}
+              <Link href="/cart">PAY WITH STRIPE</Link>
             </div>
           </div>
         </>
