@@ -1,0 +1,42 @@
+.paymentComplete {
+  display: flex;
+  justify-content: center;
+  margin: 3rem;
+
+  .wrapper {
+    background-color: rgba(0, 0, 0, 0.03);
+    padding: 2rem;
+    width: 60%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 10px;
+    gap: 0px;
+
+    .icon {
+      color: #6ab04c;
+      font-size: 10rem;
+    }
+    h1 {
+      margin: 0;
+      color: rgba(0, 0, 0, 0.5);
+      margin-bottom: 2rem;
+    }
+    button,
+    a {
+      margin-top: 20px;
+      border: none;
+      color: white;
+      background-color: #eb4d4b;
+      padding: 10px 30px;
+      font-size: 1.25rem;
+      font-weight: 900;
+      border-radius: 10px;
+      transition: all 0.2s ease;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+}

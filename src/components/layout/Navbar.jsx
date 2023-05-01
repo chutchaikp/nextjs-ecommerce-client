@@ -44,7 +44,7 @@ const Navbar = () => {
   });
 
   useEffect(() => {
-    if (router.pathname === '/payment' && showCartPopup === true) {
+    if (router.pathname === '/cart' && showCartPopup === true) {
       setShowCartPopup(false);
     }
   }, [router]);

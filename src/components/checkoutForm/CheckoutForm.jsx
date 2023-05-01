@@ -1,12 +1,3 @@
-// const CheckoutForm = () => {
-//   return (
-//     <div className={styles.checkoutForm}>
-//       <h1> CheckoutForm </h1>
-//     </div>
-//   );
-// };
-// export default CheckoutForm;
-
 import {
   PaymentElement,
   useElements,
@@ -49,7 +40,7 @@ const CheckoutForm = () => {
     }
   };
   return (
-    <div className="checkoutForm">
+    <div className={styles.checkoutForm}>
       <form id="payment-form" onSubmit={handleSubmit}>
         <PaymentElement />
         <button disabled={isProcessing} id="submit">
@@ -57,7 +48,7 @@ const CheckoutForm = () => {
         </button>
 
         {message && (
-          <div className="err" id="payment-message">
+          <div className={styles.err} id="payment-message">
             {message}
           </div>
         )}
