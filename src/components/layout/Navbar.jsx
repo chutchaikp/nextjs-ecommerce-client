@@ -143,9 +143,7 @@ const Navbar = () => {
             </div>
 
             {items.map((item, idx) => {
-              const backendUrl = process.env.NEXT_PUBLIC_API_URL;
               const img =
-                backendUrl +
                 item.product.images.data[0].attributes.formats.small.url;
               const price = toCurrencyFormated(item.product.price);
               // item.product.price.toLocaleString('th-TH', {

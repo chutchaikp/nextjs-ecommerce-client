@@ -17,13 +17,7 @@ const ProductDetailsCarousel = ({ images: data }) => {
         <img src="/images/p4.png" alt="" />
         <img src="/images/p5.png" alt="" /> */}
         {data.images.data.map((image, idx) => {
-          return (
-            <img
-              src={process.env.NEXT_PUBLIC_API_BASE_URL + image.attributes.url}
-              alt=""
-              key={idx}
-            />
-          );
+          return <img src={image.attributes.url} alt="" key={idx} />;
         })}
       </Carousel>
     </div>

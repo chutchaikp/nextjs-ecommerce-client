@@ -2,6 +2,8 @@
 
 import styles from './RelatedProducts.module.scss';
 
+TODO: create custom slider  ....
+
 const RelatedProducts = () => {
   return (
     <div className={styles.relatedProducts}>

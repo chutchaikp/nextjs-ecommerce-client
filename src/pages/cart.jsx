@@ -7,6 +7,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { toCurrencyFormated } from '@/utils/utils.client.js';
+import { postOrder } from '@/utils/utils.js';
 
 const Cart = () => {
   const { items } = useSelector((state) => state.cart);
@@ -34,17 +35,24 @@ const Cart = () => {
   useEffect(() => {
     async function stripeIntents() {
       try {
+        // debugger;
         const currency = 'thb';
-        const { data } = await axios.post(
-          // 'http://localhost:1377/create-payment-intent',
-          'http://localhost:1337/api/orders',
-          {
-            products: [],
-            email: 'chutchai.kp@gmail.com',
-            amount,
-            currency,
-          }
-        );
+        // const { data } = await axios.post(
+        //   'http://localhost:1337/api/orders',
+        //   {
+        //     products: [],
+        //     email: 'chutchai.kp@gmail.com',
+        //     amount,
+        //     currency,
+        //   }
+        // );
+
+        const { data } = await postOrder('/api/orders', {
+          products: [],
+          email: 'chutchai.kp@gmail.com',
+          amount,
+          currency,
+        });
         const _clientSecret = data.clientSecret;
         setClientSecret(_clientSecret);
       } catch (error) {
@@ -66,7 +74,6 @@ const Cart = () => {
           <div className={styles.items}>
             {items.map((item, idx) => {
               const img =
-                process.env.NEXT_PUBLIC_SERVER_URL +
                 item.product.images.data[0].attributes.formats.small.url;
               const productName = item.product.name;
               const productQuantity = item.quantity;

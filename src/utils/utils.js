@@ -19,11 +19,6 @@ import axios from "axios";
 // ex - url: /products?populate=*
 export const fetchDataFromApi = async (url) => {
 	try {
-		// debugger;
-		// const apiToken = process.env.NEXT_API_TOKEN
-		// const apiUrl = process.env.NEXT_API_URL
-		// debugger;
-
 		const params = {
 			headers: {
 				// Authorization: "bearer " + process.env.REACT_APP_STRIPE_DEV_APP_KEY,
@@ -37,6 +32,29 @@ export const fetchDataFromApi = async (url) => {
 			params
 		);
 		return data;
+	} catch (err) {
+		debugger;
+		console.log(err);
+		return err;
+	}
+};
+
+export const postOrder = async (urlPath, order) => {
+	try {
+		const params = {
+			headers: {
+				// Authorization: "bearer " + process.env.REACT_APP_STRIPE_DEV_APP_KEY,
+				// Authorization: "bearer " + import.meta.env.VITE_STRAPI_TOKEN_KEY,
+				Authorization: "bearer " + process.env.NEXT_PUBLIC_API_TOKEN,
+			},
+			data: order,
+		};
+
+		const res = await axios.post(
+			process.env.NEXT_PUBLIC_API_URL + urlPath,
+			params
+		);
+		return res;
 	} catch (err) {
 		debugger;
 		console.log(err);

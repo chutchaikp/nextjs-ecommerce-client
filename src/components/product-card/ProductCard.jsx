@@ -8,7 +8,7 @@ import {
 
 const ProductCard = ({ product }) => {
   const p = product.attributes;
-  const trumbmail = BaseApiUrl() + p.trumbnail.data.attributes.url;
+  const trumbmail = p.trumbnail.data.attributes.url;
   return (
     <div className={styles.productCard}>
       <Link href={`/product/${p.slug}`}>
