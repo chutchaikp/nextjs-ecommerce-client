@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import useSWR from 'swr'
 import { fetchDataFromApi } from '@/utils/utils';
 import { useState } from 'react';
+import Image from 'next/image';
 
 const maxResult = 3;
 const maxResultCount = 3;
@@ -75,7 +76,8 @@ const Categories = ({ categories, products, slug }) => {
 				{/* PAGINATION BUTTONS END */}
 				{isLoading && (
 					<div >
-						<img src="/images/logo.svg" width={150} />
+						{/* <img src="/images/logo.svg" width={150} alt="" /> */}
+						<Image src="/images/logo.svg" width={150} alt="" />
 						<span >Loading...</span>
 					</div>
 				)}
