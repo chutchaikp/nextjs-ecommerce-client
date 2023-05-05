@@ -1,6 +1,6 @@
 import { MdFavoriteBorder, MdKeyboardDoubleArrowUp, MdOutlineFavorite } from 'react-icons/md';
 import ProductDetailsCarousel from '../../components/product-details-carousel/ProductDetailsCarousel.jsx'
-import RelatedProducts from '../../components/related-products/RelatedProducts.jsx'
+import RelatedProducts from '../../components/related-products/RelatedProducts.jsx';
 import styles from './Product.module.scss';
 import { fetchDataFromApi } from '@/utils/utils.js';
 import { toCurrencyFormated, toDiscountPercentage } from '@/utils/utils.client.js';
@@ -167,7 +167,7 @@ export async function getStaticPaths() {
 		// const paths = products.data.map((product) => {
 		// 	return { params: { slug: product.attributes.slug }, }
 		// })
-		const paths = products.data.map((product) => ({
+		const paths = products?.data?.map((product) => ({
 			params: { slug: product.attributes.slug }
 		}))
 
@@ -177,7 +177,10 @@ export async function getStaticPaths() {
 		}
 	} catch (error) {
 		debugger;
-		return null;
+		return {
+			paths: null,
+			fallback: false,
+		};
 	}
 }
 

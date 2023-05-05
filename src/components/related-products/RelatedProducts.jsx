@@ -2,7 +2,7 @@
 
 import styles from './RelatedProducts.module.scss';
 
-TODO: create custom slider  ....
+// TODO: create custom slider  ....
 
 const RelatedProducts = () => {
   return (

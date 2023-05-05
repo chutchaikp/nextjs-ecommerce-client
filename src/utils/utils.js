@@ -23,12 +23,12 @@ export const fetchDataFromApi = async (url) => {
 			headers: {
 				// Authorization: "bearer " + process.env.REACT_APP_STRIPE_DEV_APP_KEY,
 				// Authorization: "bearer " + import.meta.env.VITE_STRAPI_TOKEN_KEY,
-				Authorization: "bearer " + process.env.NEXT_PUBLIC_API_TOKEN,
+				Authorization: "bearer " + process.env.NEXT_PUBLIC_STRAPI_API_TOKEN,
 			},
 		};
 
 		const { data } = await axios.get(
-			process.env.NEXT_PUBLIC_API_URL + url,
+			process.env.NEXT_PUBLIC_API_BASE_URL + url,
 			params
 		);
 		return data;
@@ -45,13 +45,13 @@ export const postOrder = async (urlPath, order) => {
 			headers: {
 				// Authorization: "bearer " + process.env.REACT_APP_STRIPE_DEV_APP_KEY,
 				// Authorization: "bearer " + import.meta.env.VITE_STRAPI_TOKEN_KEY,
-				Authorization: "bearer " + process.env.NEXT_PUBLIC_API_TOKEN,
+				Authorization: "bearer " + process.env.NEXT_PUBLIC_STRAPI_API_TOKEN,
 			},
 			data: order,
 		};
 
 		const res = await axios.post(
-			process.env.NEXT_PUBLIC_API_URL + urlPath,
+			process.env.NEXT_PUBLIC_API_BASE_URL + urlPath,
 			params
 		);
 		return res;

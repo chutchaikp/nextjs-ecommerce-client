@@ -134,7 +134,7 @@ const Navbar = () => {
             className={styles.cartPopup}
             onClick={() => setShowCartPopup(false)}
           ></div>
-          <div className={styles.cartItems} onclick={() => alert('hi')}>
+          <div className={styles.cartItems} onClick={() => alert('hi')}>
             <div className={styles.back}>
               <FaChevronLeft onClick={() => setShowCartPopup(false)} />
               <span>
