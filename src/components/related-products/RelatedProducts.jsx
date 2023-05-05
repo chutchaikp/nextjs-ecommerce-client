@@ -1,8 +1,4 @@
-// import ProductCard from '../product-card/ProductCard';
-
 import styles from './RelatedProducts.module.scss';
-
-// TODO: create custom slider  ....
 
 const RelatedProducts = () => {
   return (
@@ -33,34 +29,5 @@ const RelatedProducts = () => {
     </div>
   );
 };
+
 export default RelatedProducts;
-
-// export async function getStaticPathsx() {
-//   const products = await fetchDataFromApi('/api/products?populate=*');
-//   const paths = products?.data?.map((p) => ({
-//     params: {
-//       slug: p.attributes.slug,
-//     },
-//   }));
-
-//   return {
-//     paths,
-//     fallback: false,
-//   };
-// }
-
-// export async function getStaticPropsx({ params: { slug } }) {
-//   const product = await fetchDataFromApi(
-//     `/api/products?populate=*&filters[slug][$eq]=${slug}`
-//   );
-//   const products = await fetchDataFromApi(
-//     `/api/products?populate=*&[filters][slug][$ne]=${slug}`
-//   );
-
-//   return {
-//     props: {
-//       product,
-//       products,
-//     },
-//   };
-// }

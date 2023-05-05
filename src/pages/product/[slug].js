@@ -1,5 +1,5 @@
 import { MdFavoriteBorder, MdKeyboardDoubleArrowUp, MdOutlineFavorite } from 'react-icons/md';
-import ProductDetailsCarousel from '../../components/product-details-carousel/ProductDetailsCarousel.jsx'
+import ProductDetailsCarousel from '../../components/product-details-carousel/ProductDetailsCarousel.jsx';
 import RelatedProducts from '../../components/related-products/RelatedProducts.jsx';
 import styles from './Product.module.scss';
 import { fetchDataFromApi } from '@/utils/utils.js';
@@ -17,7 +17,7 @@ const Product = ({ product }) => {
 	const [showError, setShowError] = useState(true);
 	const [selectedSize, setSelectedSize] = useState(null);
 
-	const p = product.data[0].attributes
+	const p = product.data[0].attributes;
 
 	const handleAddToCart = (e) => {
 		try {
@@ -97,21 +97,6 @@ const Product = ({ product }) => {
 										{s.size}
 									</button>)
 								})}
-								{/* <div className={styles.size}>
-									UK 7
-								</div>
-								<div className={styles.size}>
-									UK 8
-								</div>
-								<div className={styles.size}>
-									UK 9
-								</div>
-								<div className={styles.size}>
-									UK 10
-								</div>
-								<div className={styles.size}>
-									UK 11
-								</div> */}
 							</div>
 							{showError &&
 								<span className={styles.selectionRequired}>
@@ -163,20 +148,19 @@ export default Product;
 // ]
 export async function getStaticPaths() {
 	try {
-		const products = await fetchDataFromApi('/api/products')
+		const products = await fetchDataFromApi('/api/products');
 		// const paths = products.data.map((product) => {
 		// 	return { params: { slug: product.attributes.slug }, }
 		// })
 		const paths = products?.data?.map((product) => ({
 			params: { slug: product.attributes.slug }
-		}))
+		}));
 
 		return {
 			paths,
 			fallback: false
-		}
+		};
 	} catch (error) {
-		debugger;
 		return {
 			paths: null,
 			fallback: false,
@@ -187,7 +171,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
 	try {
 		const { slug } = params;
-		const product = await fetchDataFromApi(`/api/products?filters[slug][$eq]=${slug}&populate=*`)
+		const product = await fetchDataFromApi(`/api/products?filters[slug][$eq]=${slug}&populate=*`);
 		return {
 			props: {
 				product,
